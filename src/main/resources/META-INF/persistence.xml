@@ -1,0 +1,38 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="hibernate-inheritance" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- 1. Déclaration des entités SINGLE_TABLE -->
+        <class>com.example.model.singletable.Vehicule</class>
+        <class>com.example.model.singletable.Voiture</class>
+        <class>com.example.model.singletable.Moto</class>
+
+        <!-- 2. Déclaration des entités JOINED -->
+        <class>com.example.model.joined.Employe</class>
+        <class>com.example.model.joined.Developpeur</class>
+        <class>com.example.model.joined.Manager</class>
+
+        <!-- 3. Déclaration des entités TABLE_PER_CLASS -->
+        <class>com.example.model.tableperclass.Produit</class>
+        <class>com.example.model.tableperclass.Livre</class>
+        <class>com.example.model.tableperclass.Electronique</class>
+
+        <properties>
+            <!-- Configuration JDBC pour la base H2 en mémoire -->
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
+            <!-- Propriétés Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
